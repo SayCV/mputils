@@ -20,5 +20,15 @@ App=_mputils_.PADSSCHApplication()
 
 App.Visible=True
 App.StatusBarText="Hello from python: " + __author__ + "@" + str(datetime.datetime.now())
+print(App.Version)
 
 schFile="demo.sch"
+if not os.path.exists(schFile):
+    App.Quit()
+    raise Exception("Invalid schFile!")
+
+Document=App.OpenDocument(schFile)
+if Document is None:
+    App.Quit()
+    raise Exception("Invalid document!")
+

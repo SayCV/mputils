@@ -26,7 +26,7 @@ class mputils(object):
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-        return self.client
+        return IHyperLynxDrcApplication(self.client)
 
     def HLApplication(self):
         try:
@@ -34,7 +34,7 @@ class mputils(object):
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-        return self.client
+        return IHLApplication(self.client)
 
     def PADSPCBApplication(self):
         try:
@@ -42,7 +42,7 @@ class mputils(object):
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-        return self.client
+        return IPowerPCBApp(self.client)
 
     def PADSSCHApplication(self):
         try:
@@ -51,5 +51,5 @@ class mputils(object):
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-        return self.client
+        return IPowerLogicApp(self.client)
 
