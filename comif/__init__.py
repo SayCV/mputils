@@ -16,42 +16,40 @@ from .padssch import *
 import win32com.client
 import pythoncom
 
-class HLDRCApplication(object):
+class mputils(object):
     def __init__(self):
+        self.client = None
+    
+    def HLDRCApplication(self):
         try:
             self.client = win32com.client.Dispatch("HLDRC.HLApplication")
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-    def __call__(self, *args, **kwargs):
         return self.client
 
-class HLApplication(object):
-    def __init__(self):
+    def HLApplication(self):
         try:
             self.client = win32com.client.Dispatch("HyperLynx.HLApplication")
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-    def __call__(self, *args, **kwargs):
         return self.client
 
-class PADSPCBApplication():
-    def __init__(self):
+    def PADSPCBApplication(self):
         try:
-            self.client = win32com.client.Dispatch("PowerPCB.HLApplication")
+            self.client = win32com.client.Dispatch("PowerPCB.Application")
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-    def __call__(self, *args, **kwargs):
         return self.client
 
-class PADSSCHApplication():
-    def __init__(self):
+    def PADSSCHApplication(self):
         try:
-            self.client = win32com.client.Dispatch("PowerLogic.HLApplication")
+            self.client = win32com.client.Dispatch("PowerLogic.Application")
+            #self.client.Visible = True
         except pythoncom.com_error as e:
             print(e)
             raise Exception("Invalid client application!")
-    def __call__(self, *args, **kwargs):
         return self.client
+
