@@ -91,6 +91,10 @@ class IPowerLogicComp(object):
     def selected(self, selected):
         self.obj.selected=selected
 
+    @property
+    def ZoomSelected(self, ZoomSelected):
+        return self.obj.ZoomSelected
+
     @ZoomSelected.setter
     def ZoomSelected(self, ZoomSelected):
         self.obj.ZoomSelected=ZoomSelected

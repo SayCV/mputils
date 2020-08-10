@@ -55,6 +55,10 @@ class IHyperLynxDrcObjectStorage(object):
     def Items(self):
         return self.obj.Items
 
+    @property
+    def Key(self, Key):
+        return self.obj.Key
+
     @Key.setter
     def Key(self, Key):
         self.obj.Key=Key

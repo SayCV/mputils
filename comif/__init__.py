@@ -12,3 +12,46 @@ from .hyperlynx import *
 from .padspcb import *
 
 from .padssch import *
+
+import win32com.client
+import pythoncom
+
+class HLDRCApplication(object):
+    def __init__(self):
+        try:
+            self.client = win32com.client.Dispatch("HLDRC.HLApplication")
+        except pythoncom.com_error as e:
+            print(e)
+            raise Exception("Invalid client application!")
+    def __call__(self, *args, **kwargs):
+        return self.client
+
+class HLApplication(object):
+    def __init__(self):
+        try:
+            self.client = win32com.client.Dispatch("HyperLynx.HLApplication")
+        except pythoncom.com_error as e:
+            print(e)
+            raise Exception("Invalid client application!")
+    def __call__(self, *args, **kwargs):
+        return self.client
+
+class PADSPCBApplication():
+    def __init__(self):
+        try:
+            self.client = win32com.client.Dispatch("PowerPCB.HLApplication")
+        except pythoncom.com_error as e:
+            print(e)
+            raise Exception("Invalid client application!")
+    def __call__(self, *args, **kwargs):
+        return self.client
+
+class PADSSCHApplication():
+    def __init__(self):
+        try:
+            self.client = win32com.client.Dispatch("PowerLogic.HLApplication")
+        except pythoncom.com_error as e:
+            print(e)
+            raise Exception("Invalid client application!")
+    def __call__(self, *args, **kwargs):
+        return self.client
