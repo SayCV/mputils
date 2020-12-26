@@ -1,5 +1,4 @@
 @chcp 65001
-@echo off&SetLocal EnableDelayedExpansion
 echo,
 echo,=====
 echo,SPDX-License-Identifier: (GPL-2.0+ OR MIT):
@@ -9,6 +8,7 @@ echo,
 echo,Copyright (c) 2018-2020, SayCV
 echo,=====
 echo,
+@echo off&SetLocal EnableDelayedExpansion
 
 :: =====
 
