@@ -33,7 +33,7 @@ if not %errorlevel% == 0 echo %__DT__% [INFO] Running failed && pause && EXIT 1
 echo %__DT__% [INFO] Running successfully
 
 :: =====
-DELAY 3 >nul 2>&1 || ping -n 3 127.0.0.1>nul
+DELAY 3 2>nul || ping -n 3 127.0.0.1>nul
 EXIT 0
 
 :: =====
