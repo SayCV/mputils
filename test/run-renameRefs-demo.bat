@@ -1,4 +1,5 @@
 @chcp 65001
+@echo off
 echo,
 echo,=====
 echo,SPDX-License-Identifier: (GPL-2.0+ OR MIT):
@@ -8,13 +9,35 @@ echo,
 echo,Copyright (c) 2018-2020, SayCV
 echo,=====
 echo,
-@echo off&SetLocal EnableDelayedExpansion
+@echo off&setLocal EnableDelayedExpansion
+
+if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
+
+setlocal disabledelayedexpansion
+set GanTanHaoMark=!
+setlocal enabledelayedexpansion
 
 :: =====
+cd /d "%~dp0"
+set "TOPDIR=%cd:\=/%"
+title "%~n0"
+:: =====
+
+if "xy" == "xy" goto :skip_getadmin_privileges
+>NUL 2>&1 REG.exe query "HKU\S-1-5-19" || (
+    ECHO SET UAC = CreateObject^("Shell.Application"^) > "%TEMP%\Getadmin.vbs"
+    ECHO UAC.ShellExecute "%~f0", "%1", "", "runas", 1 >> "%TEMP%\Getadmin.vbs"
+    "%TEMP%\Getadmin.vbs"
+    DEL /f /q "%TEMP%\Getadmin.vbs" 2>NUL
+    Exit /b
+)
+:skip_getadmin_privileges
 
 set "SCRIPT_RUNSTAMP_DATE=%date:~3,4%-%date:~8,2%-%date:~11,2%"
 set "SCRIPT_RUNSTAMP_TIME=%time:~0,2%:%time:~3,2%:%time:~6,2%"
 set "__DT__=%SCRIPT_RUNSTAMP_DATE% %SCRIPT_RUNSTAMP_TIME%"
+set "VER=1.0.5-20201226"
+echo %__DT__% [INFO] Check script version : %VER%.
 echo %__DT__% [INFO] Running %~n0.
 
 :: =====

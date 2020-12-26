@@ -23,7 +23,8 @@ App.Visible=True
 App.StatusBarText="Hello from python: " + __author__ + "@" + str(datetime.datetime.now())
 print("Version", App.Version)
 
-schFile = SRC_DIR + "/demo.sch"
+schFile = SCRIPTS_DIR + "/demo.sch"
+print(schFile)
 if not os.path.exists(schFile):
     App.Quit()
     raise Exception("Invalid schFile!")
