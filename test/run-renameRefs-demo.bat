@@ -40,6 +40,8 @@ set "VER=1.0.5-20201226"
 echo %__DT__% [INFO] Check script version : %VER%.
 echo %__DT__% [INFO] Running %~n0.
 
+set "PATH=D:/python;%PATH%"
+
 :: =====
 call :checkProgramExist powerlogic
 call :checkProgramExist python
