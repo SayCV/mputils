@@ -1,6 +1,6 @@
 import sys
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 if sys.version_info < (3, 0):
     sys.exit("Sorry, Python < 3.0 is not supported")
@@ -28,7 +28,7 @@ setup(
     author="mputils project developers",
     author_email="",
     url="https://github.com/saycv/mputils",
-    packages=["mputils"],
+    packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     entry_points={},
     include_package_data=True,
     install_requires=install_requires,
